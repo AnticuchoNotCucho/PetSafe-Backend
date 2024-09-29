@@ -2,14 +2,12 @@ package org.anticuchonotcucho.petsafeapi.controller;
 
 import org.anticuchonotcucho.petsafeapi.model.entity.UserEntity;
 import org.anticuchonotcucho.petsafeapi.repository.IUserRepository;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -47,6 +45,13 @@ public class UserController {
             e.printStackTrace();
             return ResponseEntity.status(500).body(false);
         }
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<Optional<UserEntity>> getUserDetails(@RequestParam String username){
+        System.out.println("obteniendo detalles, " + username);
+        Optional<UserEntity> userFound = iUserRepository.findAll().stream().filter(userEntity -> userEntity.getUsername().equals(username)).findFirst();
+        return ResponseEntity.ok(userFound);
     }
 
 }
