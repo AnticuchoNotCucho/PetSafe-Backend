@@ -30,6 +30,9 @@ public class UserEntity {
     @Basic
     @Column(name = "phone", nullable = true, length = 15)
     private String phone;
+    @Basic
+    @Column(name = "token", nullable = true, length = 512)
+    private String token;
 
     public int getId() {
         return id;
@@ -125,5 +128,13 @@ public class UserEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

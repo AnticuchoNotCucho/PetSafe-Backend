@@ -5,29 +5,29 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "found_pet_report", schema = "public", catalog = "postgres")
-public class FoundPetReportEntity {
+@Table(name = "points_of_interest", schema = "public", catalog = "postgres")
+public class PointsOfInterestEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "pet_description", nullable = false, length = -1)
-    private String petDescription;
+    @Column(name = "description", nullable = false, length = -1)
+    private String description;
     @Basic
-    @Column(name = "finder_id", nullable = false)
-    private int finderId;
+    @Column(name = "reporter_id", nullable = false)
+    private int reporterId;
     @Basic
     @Column(name = "status", nullable = true, length = 50)
     private String status;
     @Basic
-    @Column(name = "found_at", nullable = false)
-    private Timestamp foundAt;
+    @Column(name = "reported_at", nullable = false)
+    private Timestamp reportedAt;
     @Basic
     @Column(name = "image", nullable = true, length = -1)
     private String image;
     @Basic
-    @Column(name = "name", nullable = true, length = -1)
+    @Column(name = "name", nullable = true, length = 255)
     private String name;
     @Basic
     @Column(name = "type_id", nullable = true)
@@ -44,20 +44,20 @@ public class FoundPetReportEntity {
         this.id = id;
     }
 
-    public String getPetDescription() {
-        return petDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPetDescription(String petDescription) {
-        this.petDescription = petDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getFinderId() {
-        return finderId;
+    public int getReporterId() {
+        return reporterId;
     }
 
-    public void setFinderId(int finderId) {
-        this.finderId = finderId;
+    public void setReporterId(int reporterId) {
+        this.reporterId = reporterId;
     }
 
     public String getStatus() {
@@ -68,12 +68,12 @@ public class FoundPetReportEntity {
         this.status = status;
     }
 
-    public Timestamp getFoundAt() {
-        return foundAt;
+    public Timestamp getReportedAt() {
+        return reportedAt;
     }
 
-    public void setFoundAt(Timestamp foundAt) {
-        this.foundAt = foundAt;
+    public void setReportedAt(Timestamp reportedAt) {
+        this.reportedAt = reportedAt;
     }
 
     public String getImage() {
@@ -113,14 +113,13 @@ public class FoundPetReportEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        FoundPetReportEntity that = (FoundPetReportEntity) o;
+        PointsOfInterestEntity that = (PointsOfInterestEntity) o;
 
         if (id != that.id) return false;
-        if (finderId != that.finderId) return false;
-        if (petDescription != null ? !petDescription.equals(that.petDescription) : that.petDescription != null)
-            return false;
+        if (reporterId != that.reporterId) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (foundAt != null ? !foundAt.equals(that.foundAt) : that.foundAt != null) return false;
+        if (reportedAt != null ? !reportedAt.equals(that.reportedAt) : that.reportedAt != null) return false;
         if (image != null ? !image.equals(that.image) : that.image != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (typeId != null ? !typeId.equals(that.typeId) : that.typeId != null) return false;
@@ -132,10 +131,10 @@ public class FoundPetReportEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (petDescription != null ? petDescription.hashCode() : 0);
-        result = 31 * result + finderId;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + reporterId;
         result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (foundAt != null ? foundAt.hashCode() : 0);
+        result = 31 * result + (reportedAt != null ? reportedAt.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (typeId != null ? typeId.hashCode() : 0);
